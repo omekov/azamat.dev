@@ -24,4 +24,13 @@ jobs:
     - run: npm i
     - run: npm run build
     - run: npm run test
-    - run: npm run deploy
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Deploy to GitHub Pages
+        uses: Cecilapp/GitHub-Pages-deploy@master
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BUILD_DIR: build
