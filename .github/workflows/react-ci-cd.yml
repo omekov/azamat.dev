@@ -17,20 +17,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
     - run: npm i
+  
+    - run: npm test -- --coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+
     - run: npm run build
-    - run: npm run test
     
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Deploy to GitHub Pages
-        uses: Cecilapp/GitHub-Pages-deploy@master
-        env:
-          EMAIL: ${{ secrets.EMAIL }}
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BUILD_DIR: build
+    run: |
+      git config --global user.name $user_name
+      git config --global user.email $user_email
+      git remote set-url origin https://${github_token}@github.com/${repository}
+      npm run deploy
+    env:
+      user_name: 'github-actions[bot]'
+      user_email: 'github-actions[bot]@users.noreply.github.com'
+      github_token: ${{ secrets.ACCESS_TOKEN }}
+      repository: ${{ github.repository }}
