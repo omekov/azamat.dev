@@ -10,7 +10,7 @@ describe('App Component', () => {
     component = component()
   })
 
-  it('should render without errors', () => {
+  xit('should render without errors', () => {
     const element = findByTestAttr(component, 'AppComponent')
     expect(element.length).toBe(1)
   })

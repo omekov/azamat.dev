@@ -1,12 +1,12 @@
 import React from 'react'
 import './styles.scss'
-import logo from '../../assets/google-logo.jpg'
+import developer from '../../assets/developer.svg'
 const Header = (props) => {
   return (
     <header data-test="headerComponent">
       <div className="wrap">
         <div className="logo">
-          <img data-test="logoIMG" src={logo} alt="google-logo" />
+          <img data-test="logoIMG" src={developer} alt="developer" />
         </div>
       </div>
     </header>

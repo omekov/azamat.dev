@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import ReactThink from 'redux-thunk'
 import RootReducer from './reducers'
 
-const middleware = [ReactThink]
+export const middlewares = [ReactThink]
 
-const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
 
 export const store = createStoreWithMiddleware(RootReducer)
