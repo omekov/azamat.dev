@@ -24,7 +24,7 @@ class App extends Component {
       emitEvent: this.fetch
     }
     return (
-      <div data-test="AppComponent">
+      <div data-test="appComponent">
         <Header />
         <section className="main">
           <Headline header="Posts" desc="Click the button to render posts!" />
