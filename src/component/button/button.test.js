@@ -4,14 +4,7 @@ import SharedButton from './index'
 import { shallow } from 'enzyme'
 
 describe('SharedButton Component', () => {
-  let component
-  const props = {
-    buttonText: 'Example Button Text',
-    emitEvent: () => { }
-  }
-  beforeEach(() => {
-    component = (props = {}) => shallow(<SharedButton {...props} />)
-  })
+
   describe('Checking PropTypes', () => {
     it('Should NOT throw a warning', () => {
       const expectedProps = {
@@ -24,12 +17,26 @@ describe('SharedButton Component', () => {
   })
 
   describe('Renders', () => {
+    let component
+    let mockFunc
+
     beforeEach(() => {
-      component = component(props)
+      mockFunc = jest.fn()
+      const props = {
+        buttonText: 'Example Button Text',
+        emitEvent: mockFunc
+      }
+      component = shallow(<SharedButton {...props} />)
     })
     it('should render a button', () => {
       const button = findByTestAttr(component, 'buttonComponent')
       expect(button.length).toBe(1)
+    })
+    it('should emit callback on click event', () => {
+      const button = findByTestAttr(component, 'buttonComponent')
+      button.simulate('click')
+      const callback = mockFunc.mock.calls.length
+      expect(callback).toEqual(1)
     })
   })
 })
