@@ -46,7 +46,7 @@ class App extends Component {
       <div data-test="appComponent">
         <Header />
         <section className="main">
-          <Headline header="Posts" desc="Click the button to render posts!" />
+          <Headline header="Posts" desc="welcome my portfolio" />
           {hideBtn &&
             <SharedButton {...configButton} />
           }
